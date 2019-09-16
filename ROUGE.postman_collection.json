@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "9502281c-ea60-4446-8a71-d092d7feb801",
+		"name": "ROUGE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET_WORKS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/api-works",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"api-works"
+					]
+				},
+				"description": "Get all works"
+			},
+			"response": []
+		},
+		{
+			"name": "GET_WORKS_PAGING_SORTING",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/api-works?pageNo=0&pageSize=10&sortBy=workName",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"api-works"
+					],
+					"query": [
+						{
+							"key": "pageNo",
+							"value": "0"
+						},
+						{
+							"key": "pageSize",
+							"value": "10"
+						},
+						{
+							"key": "sortBy",
+							"value": "workName"
+						}
+					]
+				},
+				"description": "Get all works with paging and sorting"
+			},
+			"response": []
+		},
+		{
+			"name": "ADD WORK",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"workName\": \"Task 1\",\n\t\"startingDate\": \"2019-09-16T15:00:00.754Z\",\n\t\"endingDate\": \"2019-09-17T15:30:00.754Z\",\n\t\"status\":\"Pending\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/api-works",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"api-works"
+					]
+				},
+				"description": "Add a work"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT WORK",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":1,\n\t\"workName\": \"Task 1\",\n\t\"startingDate\": \"2019-09-16T15:00:00.754Z\",\n\t\"endingDate\": \"2019-09-17T15:30:00.754Z\",\n\t\"status\":\"Doing\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/api-works",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"api-works"
+					]
+				},
+				"description": "Update work"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE WORKs",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ids\":[1,2,3]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/api-works",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"api-works"
+					]
+				},
+				"description": "Delete works"
+			},
+			"response": []
+		}
+	]
+}
