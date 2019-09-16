@@ -3,6 +3,10 @@ package com.rouge.test.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +34,18 @@ public class WorksService implements IWorksService {
 	}
 
 	@Override
+	public ResponseEntity<?> getAllWorks(Integer pageNo, Integer pageSize, String sortedBy) {
+		try {
+			Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortedBy).ascending());
+			Page<Works> pages = worksDAO.findAll(pageable);
+
+			return Utils.generateSuccessResponse(pages);
+		} catch (Exception e) {
+			return Utils.generateFailedResponse(e.getMessage());
+		}
+	}
+
+	@Override
 	public ResponseEntity<?> addWork(Works work) {
 		work = worksDAO.save(work);
 		return Utils.generateSuccessResponse(work);
@@ -49,5 +65,4 @@ public class WorksService implements IWorksService {
 		
 		return Utils.generateSuccessResponse("Delete successful");
 	}
-
 }

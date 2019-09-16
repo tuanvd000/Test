@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rouge.test.entity.DeleteHelper;
 import com.rouge.test.entity.Works;
 import com.rouge.test.service.IWorksService;
 
@@ -21,8 +23,12 @@ public class WorkController {
 	IWorksService worksService;
 	
 	@GetMapping("/api-works")
-	public ResponseEntity<?> getAllWorks() {
-		return worksService.getAllWorks();
+	public ResponseEntity<?> getAllWorks(
+			@RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "id") String sortBy) {
+
+		return worksService.getAllWorks(pageNo, pageSize, sortBy);
 	}
 	
 	@PostMapping("/api-works")
@@ -36,7 +42,7 @@ public class WorkController {
 	}
 	
 	@DeleteMapping("/api-works")
-	public ResponseEntity<?> deleteWorks(@RequestBody int[] ids) {
-		return worksService.deleteWorks(ids);
+	public ResponseEntity<?> deleteWorks(@RequestBody DeleteHelper delete) {
+		return worksService.deleteWorks(delete.getIds());
 	}
 }
